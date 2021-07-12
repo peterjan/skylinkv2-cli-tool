@@ -10,9 +10,9 @@ class Skylinkv2 extends Command {
     version: flags.version({char: 'v'}),
     help: flags.help({char: 'h'}),
     // flag with a value (-n, --name=VALUE)
-    name: flags.string({char: 'n', description: 'name to print'}),
+    // name: flags.string({char: 'n', description: 'name to print'}),
     // flag with no value (-f, --force)
-    force: flags.boolean({char: 'f'}),
+    // force: flags.boolean({char: 'f'}),
     // flag with a value (-p, --portal=VALUE)
     portal: flags.string({char: 'p', description: 'Skynet Portal URL'}),
     // flag with a value (-k, --seed=VALUE)
@@ -23,7 +23,7 @@ class Skylinkv2 extends Command {
     skylink: flags.string({char: 's', description: 'Skylink to point Skylink v2 at'}),
   }
 
-  static args = [{name: "file", portal: "https://siasky.net", seed: "superSecretSeed", dataKey: "nameForRegistryEntry", skylink: "sia://MABdWWku6YETM2zooGCjQi26Rs4a6Hb74q26i-vMMcximQ"}];
+  static args = [{name: "Label", portal: "https://siasky.net", seed: "superSecretSeed", dataKey: "nameForRegistryEntry", skylink: "sia://MABdWWku6YETM2zooGCjQi26Rs4a6Hb74q26i-vMMcximQ"}];
 
   async run() {
     const {args, flags} = this.parse(Skylinkv2);
