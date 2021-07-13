@@ -59,7 +59,7 @@ export default class Create extends Command {
     this.log(`URL: ${skylinkURL}`);
   }
 
-  async uploadEmptySkyfile(client: SkynetClientNodeJS): Promise<string | null> {
+  async uploadEmptySkyfile(client: any): Promise<string | null> {
     const tmpFilePath = join(__dirname, "tmp.txt");
 
     try {
