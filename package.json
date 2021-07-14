@@ -1,6 +1,6 @@
 {
   "name": "skylinkv2-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "PJ @peterjan",
   "bin": {
     "skylinkv2": "./bin/run"
@@ -35,6 +35,8 @@
   ],
   "homepage": "https://github.com/peterjan/skylinkv2-cli",
   "keywords": [
+    "skynet",
+    "skylink",
     "oclif"
   ],
   "license": "MIT",
