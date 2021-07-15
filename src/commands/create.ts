@@ -18,6 +18,12 @@ export default class Create extends Command {
   ];
 
   static flags = {
+    force: flags.boolean({
+      char: "f",
+      description:
+        "Forcefully recreate the V2 Skylink if necessary, this will overwrite the existing data.",
+      default: false,
+    }),
     help: flags.help({ char: "h" }),
     portal: flags.string({
       char: "p",
@@ -33,11 +39,22 @@ export default class Create extends Command {
   async run() {
     const { args, flags } = this.parse(Create);
     const { dataKey } = args;
-    const { portal, keyfile } = flags;
+    const { portal, keyfile, force } = flags;
 
     // load the keys
     const keys = loadKeys(keyfile);
     const { publicKey, privateKey } = keys;
+
+    // check whether the entry exists
+    const client = new SkynetClient(portal);
+    if (!force) {
+      const { entry } = await client.registry.getEntry(publicKey, dataKey);
+      if (entry !== null) {
+        this.error(
+          `The entry for dataKey '${dataKey}' is already initialized, to overwrite it and clear the data behind is, pass the --force (-f) flag.`
+        );
+      }
+    }
 
     // create placeholder
     const clientNodeJS = new SkynetClientNodeJS(portal);
@@ -47,7 +64,6 @@ export default class Create extends Command {
     }
 
     // create a registry entry that points at the placeholder
-    const client = new SkynetClient(portal);
     await client.db.setDataLink(privateKey, dataKey, skylinkV1);
 
     // create a V2 skylink that points at the registry entry
