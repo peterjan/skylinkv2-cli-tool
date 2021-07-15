@@ -50,9 +50,10 @@ export default class Create extends Command {
     if (!force) {
       const { entry } = await client.registry.getEntry(publicKey, dataKey);
       if (entry !== null) {
-        this.error(
+        this.log(
           `The entry for dataKey '${dataKey}' is already initialized, to overwrite it and clear the data behind is, pass the --force (-f) flag.`
         );
+        return;
       }
     }
 

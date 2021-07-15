@@ -1,6 +1,6 @@
 {
   "name": "skylinkv2-cli",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "PJ @peterjan",
   "bin": {
     "skylinkv2": "./bin/run"
